@@ -74,7 +74,8 @@ Kalman Filter | 0.03900183400744959
 
 For more information, please check out notebooks `4` to `8`
 
-### On the 
+### On temporal anomaly detection
+
 
 ### On the models used
 #### FBProphet
