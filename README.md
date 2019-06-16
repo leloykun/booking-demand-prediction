@@ -68,8 +68,48 @@ While the following are the errors for the hyperlocal models:
 
 **Models** | **RMSE**
 --- | ---
-Kalman Filter | 0.03900183400744959
 FBProphet | 0.03973981575859182
 Theta Method | 0.035792962736291206
+Kalman Filter | 0.03900183400744959
+
+For more information, please check out notebooks `4` to `8`
+
+### On the 
+
+### On the models used
+#### FBProphet
+https://facebook.github.io/prophet/docs/quick_start.html
+#### Kalman Filter
+https://simdkalman.readthedocs.io/en/latest/
+#### Theta Method
+Please check out the journal articles in the `journal` folder. The researcher found the paper `The Optimized Theta Model` very enlightening.
+
+### On why SARIMA wasn't used
+The period of the cycles are of length `96`. This is way too large for SARIMA, making it slow.
 
 ### On the use of simple weighing for ensembling
+Apparently, the mahalobis distance of the frequencies, demand mean, and time of the day of the timeseries doesn't affect the RMSEs that much. See the following plots (sorry for the misleading labels!):
+
+RMSE vs. Mahalanobis Distance of the Frequencies
+
+![](rmse_vs_mahalanobis.png)
+
+RMSE vs. Demand Mean
+
+![](rmse_vs_demand_mean.png)
+
+RMSE vs. Time of the Day
+
+![](rmse_vs_time.png)
+
+Thus, no external variables were used. For robustness, HuberRegression was used to determine the weights of the predictions.
+
+Simple averaging also works well. In fact, it works 0.36% better than using the weights found using HuberRegression. The weights were used anyway since they are proportional to the models' performance.
+
+**Models** | **RMSE** | **Weight**
+--- | --- | ---
+FBProphet | 0.03973981575859182 | 0.29395973
+Theta Method | 0.035792962736291206 | 0.38132017
+Kalman Filter | 0.03900183400744959 | 0.309658
+
+For more information, please check out `9 - Ensembling.ipynb`
