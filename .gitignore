@@ -1,1 +1,6 @@
 .ipynb_checkpoints
+training.csv
+full_data.csv
+freq_mahalanobis_dist.npy
+density_images.npy
+density_mask.npy
