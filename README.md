@@ -1,6 +1,8 @@
 # Booking Demand Prediction
 A solution to Grab's AI for SEA competition
 
+![](aiforsea_header.PNG)
+
 ## Requirements
 ### Environment
 - Linux (Prediction in `10 - Final Solution - Booking Demand Prediction.ipynb` utilizes parallelism which doesn't work on Windows)
@@ -18,7 +20,7 @@ A solution to Grab's AI for SEA competition
 - tensorflow==2.0.0-alpha0
 
 ## Instructions
-NOTE: You only need to run 10 - Final Solution - Booking Demand Prediction.ipynb. The other notebooks just explain the methodology behind the solution.
+NOTE: You only need to run `10 - Final Solution - Booking Demand Prediction.ipynb`. The other notebooks just explain the methodology behind the solution.
 
 ### Install the necessary libraries
 ```{bash}
@@ -74,9 +76,6 @@ Kalman Filter | 0.03900183400744959
 
 For more information, please check out notebooks `4` to `8`
 
-### On temporal anomaly detection
-
-
 ### On the models used
 #### FBProphet
 https://facebook.github.io/prophet/docs/quick_start.html
@@ -87,6 +86,17 @@ Please check out the journal articles in the `journal` folder. The researcher fo
 
 ### On why SARIMA wasn't used
 The period of the cycles are of length `96`. This is way too large for SARIMA, making it slow.
+
+### On temporal anomaly detection
+The researcher first suspected global temporal anomalies after observing the mean demand over time
+![](temporal_anomaly.PNG)
+
+An autoencoder was then trained on the density maps for each timestep. Fair enough, anomalies were found:
+![](temporal_anomaly_2.PNG)
+
+These anomalies happened on day 17 from 9:30am to 12:45pm. Perhaps there was an outage? A server malfunction? The researcher doesn't know.
+
+To avoid these anomalies from affecting the results, days 1-19 were ignored while doing crossvalidation. Additionally, an additional regressor was added to the FBProphet model to handle these anomalies.
 
 ### On the use of simple weighing for ensembling
 Apparently, the mahalobis distance of the frequencies, demand mean, and time of the day of the timeseries doesn't affect the RMSEs that much. See the following plots (sorry for the misleading labels!):
