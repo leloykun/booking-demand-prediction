@@ -1,0 +1,8 @@
+pygeohash
+simdkalman
+sklearn
+scipy==1.2
+statsmodels
+pystan
+fbprophet
+tensorflow==2.0.0-alpha0
