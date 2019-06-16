@@ -2,6 +2,8 @@
 A solution to Grab's AI for SEA competition
 
 ## Requirements
+### Environment
+- Linux (Prediction in `10 - Final Solution - Booking Demand Prediction.ipynb` utilizes parallelism which doesn't work on Windows)
 ### Language
 - Python 3.6+
 ### Libraries
