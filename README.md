@@ -53,7 +53,8 @@ In hyperlocal forecasting, we need to fit a model for each timeseries (by locati
 
 The following are the errors for the spatiotemporal models:
 
-Models | RMSE
+**Models** | **RMSE**
+--- | ---
 1st degree polynomial regressor | 0.048594363494371254
 2nd degree polynomial regressor | 0.04912314854368942
 3rd degree polynomial regressor | 0.0495815584173599
@@ -63,7 +64,8 @@ Neural Network | 0.049747
 
 While the following are the errors for the hyperlocal models:
 
-Models | RMSE
+**Models** | **RMSE**
+--- | ---
 Kalman Filter | 0.03900183400744959
 FBProphet | 0.03973981575859182
 Theta Method | 0.035792962736291206
